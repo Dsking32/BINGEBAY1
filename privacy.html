@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #bae6fd;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Remove floating background elements and particles */
+        /* .cloud, .particles, .particle { display: none !important; } */
+        .particles { display: none !important; }
+        .particle { display: none !important; }
+        /* Remove any keyframes for background animation */
+        @keyframes float {}
+        @keyframes particle-float {}
+
+        :root {
+            --header-height: 80px;
+        }
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 70px;
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: #000 !important;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: all 0.3s ease;
+            height: var(--header-height);
+            box-sizing: border-box;
+        }
+
+        .logo img {
+            height: 100px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 0 30px #ff1493aa);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: #00bfff;
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff1493, #00bfff);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        .btn-signup {
+            background: linear-gradient(45deg, #ff1493, #00bfff);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 20, 147, 0.5);
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .auth-buttons {
+                gap: 10px;
+            }
+            .btn-signup {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #38bdf8, #7dd3fc, #bae6fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logo-glow 3s ease-in-out infinite alternate;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            animation: logo-glow 3s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
+            transition: transform 0.3s ease;
+        }
+
+        @keyframes logo-glow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
+                transform: scale(1);
+            }
+            to {
+                filter: drop-shadow(0 0 25px rgba(125, 211, 252, 0.8));
+                transform: scale(1.02);
+            }
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #0ea5e9, #38bdf8, #7dd3fc);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 30px rgba(14, 165, 233, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.6);
+            background: linear-gradient(45deg, #38bdf8, #7dd3fc, #bae6fd);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+            padding-top: 120px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            color: #bae6fd;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #bae6fd;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 400;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 140px;
+        }
+
+        .sidebar-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            color: #bae6fd;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.5rem 0;
+            border-radius: 8px;
+        }
+
+        .sidebar-nav a:hover {
+            color: white;
+            padding-left: 1rem;
+        }
+
+        .sidebar-nav a.active {
+            color: white;
+            font-weight: 600;
+            padding-left: 1rem;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .effective-date {
+            font-size: 0.9rem;
+            color: #bae6fd;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: white;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .content h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #bae6fd;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        .content p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: #bae6fd;
+        }
+
+        .content ul {
+            margin: 1rem 0 1rem 1.5rem;
+            color: #bae6fd;
+        }
+
+        .content li {
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #0ea5e9 0%, #7dd3fc 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            color: white;
+        }
+
+        .contact-section h2 {
+            color: white;
+            border-bottom: none;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        /* Mobile Toggle Button */
+        .nav-toggle {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+            width: 100%;
+            text-align: left;
+            position: relative;
+        }
+
+        .nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-toggle::after {
+            content: '▼';
+            position: absolute;
+            right: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-toggle.active::after {
+            transform: rotate(180deg);
+        }
+
+        .nav-grid {
+            transition: all 0.3s ease;
+        }
+
+        .nav-grid.collapsed {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .sidebar {
+                position: static;
+                top: auto;
+                display: none;
+            }
+
+            .nav-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                padding-top: 100px;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+
+            .content h1 {
+                font-size: 2rem;
+            }
+
+            .content h2 {
+                font-size: 1.5rem;
+            }
+
+            .navbar {
+                padding: 0.75rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .sidebar-card {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 1rem;
+            }
+            
+            .nav-container {
+                padding: 1rem;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(45deg, #0ea5e9, #38bdf8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/BL.svg" alt="Bingebay Logo" style="height:100px; width:auto; display:block;">
+            </a>
+        </div>
+
+        <div class="auth-buttons">
+            <a href="index.html" class="btn btn-signup" target="_blank" rel="noopener">Home</a>
+        </div>
+    </nav>
+
+    
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <div class="nav-container">
+            <div class="nav-title">Quick Navigation</div>
+            <button class="nav-toggle" id="navToggle">Show Navigation Menu</button>
+            <div class="nav-grid" id="navGrid">
+                <a href="#information-collection" class="nav-link">Information We Collect</a>
+                <a href="#information-usage" class="nav-link">How We Use Your Information</a>
+                <a href="#legal-basis" class="nav-link">Legal Basis for Processing</a>
+                <a href="#information-sharing" class="nav-link">Information Sharing</a>
+                <a href="#data-retention" class="nav-link">Data Retention</a>
+                <a href="#data-security" class="nav-link">Data Security</a>
+                <a href="#international-transfers" class="nav-link">International Transfers</a>
+                <a href="#your-rights" class="nav-link">Your Rights</a>
+                <a href="#children-privacy" class="nav-link">Children's Privacy</a>
+                <a href="#cookies" class="nav-link">Cookies & Tracking</a>
+                <a href="#policy-changes" class="nav-link">Policy Changes</a>
+                <a href="#contact" class="nav-link">Contact Us</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Table of Contents</div>
+                    <ul class="sidebar-nav">
+                        <li><a href="#information-collection">Information We Collect</a></li>
+                        <li><a href="#information-usage">How We Use Information</a></li>
+                        <li><a href="#legal-basis">Legal Basis</a></li>
+                        <li><a href="#information-sharing">Information Sharing</a></li>
+                        <li><a href="#data-retention">Data Retention</a></li>
+                        <li><a href="#data-security">Data Security</a></li>
+                        <li><a href="#international-transfers">International Transfers</a></li>
+                        <li><a href="#your-rights">Your Rights</a></li>
+                        <li><a href="#children-privacy">Children's Privacy</a></li>
+                        <li><a href="#cookies">Cookies & Tracking</a></li>
+                        <li><a href="#policy-changes">Policy Changes</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <h1>Privacy Policy</h1>
+                <div class="effective-date">Effective Date: June 18, 2025</div>
+                
+                <p>This Privacy Policy describes how Venix Partners Limited ("we", "us", or "our"), a company incorporated under the laws of the Federal Republic of Nigeria, collects, uses, stores, and shares your personal information when you use the BingeBay platform ("Platform" or "Service"). We are committed to protecting your privacy and ensuring transparency in accordance with the Nigeria Data Protection Act (NDPA) 2023, the Nigeria Data Protection Regulation (NDPR), and other applicable data protection laws.</p>
+
+                <section id="information-collection">
+                    <h2>1. Information We Collect</h2>
+                    <p>We collect the following categories of personal data:</p>
+                    <ul>
+                        <li><strong>Identity Information:</strong> Email address</li>
+                        <li><strong>Account Information:</strong> Username, password, profile picture, content preferences, and channel subscriptions</li>
+                        <li><strong>Usage and Interaction Data:</strong> Viewing activity, watch history, search queries, content likes, and feedback</li>
+                        <li><strong>Technical Data:</strong> IP address, device identifiers, device type, operating system, browser type, referral URLs, and geolocation data</li>
+                        <li><strong>Communications:</strong> User communications with our support team, survey responses, and marketing preferences</li>
+                    </ul>
+                </section>
+
+                <section id="information-usage">
+                    <h2>2. How We Use Your Information</h2>
+                    <p>We use your personal information for the following purposes:</p>
+                    <ul>
+                        <li>To create, verify, and manage user accounts</li>
+                        <li>To enable access to content and services available on BingeBay</li>
+                        <li>To process viewer payments and Creator payouts securely and efficiently</li>
+                        <li>To personalize content recommendations and enhance user experience</li>
+                        <li>To analyze user behavior and improve platform performance, functionality, and security</li>
+                        <li>To provide technical support, resolve disputes, and respond to user inquiries</li>
+                        <li>To enforce our Terms of Service and comply with legal and regulatory requirements</li>
+                        <li>To send service announcements, updates, and promotional communications (only where consent is given)</li>
+                    </ul>
+                </section>
+
+                <section id="legal-basis">
+                    <h2>3. Legal Basis for Processing</h2>
+                    <p>We rely on the following legal bases to collect and process your data:</p>
+                    <ul>
+                        <li><strong>Consent:</strong> For marketing and non-essential cookies or features</li>
+                        <li><strong>Contractual Necessity:</strong> To deliver services you request or subscribe to</li>
+                        <li><strong>Legal Obligation:</strong> To meet obligations under applicable laws (e.g., tax, anti-fraud, AML laws)</li>
+                        <li><strong>Legitimate Interests:</strong> For platform optimization, analytics, and ensuring user safety</li>
+                    </ul>
+                </section>
+
+                <section id="information-sharing">
+                    <h2>4. Sharing and Disclosure of Information</h2>
+                    <p>We may disclose your personal data in the following scenarios:</p>
+                    <ul>
+                        <li>To vetted service providers and partners who assist us in operating our platform, including hosting, analytics, and payment services</li>
+                        <li>To regulatory authorities, law enforcement, or government bodies when required by law or legal process</li>
+                        <li>To third-party merchants or service providers, with your explicit consent or where you engage with them through the platform</li>
+                        <li>To third parties involved in a corporate transaction (e.g., merger, acquisition), subject to confidentiality</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Important:</strong> We do not sell or rent personal information to marketers or unrelated third parties.</p>
+                    </div>
+                </section>
+
+                <section id="data-retention">
+                    <h2>5. Data Retention</h2>
+                    <p>We retain your personal data for as long as necessary to fulfill the purposes stated in this Policy, including:</p>
+                    <ul>
+                        <li>While your account remains active</li>
+                        <li>As required by law or for legitimate business purposes (e.g., financial recordkeeping, fraud prevention)</li>
+                        <li>Until consent is withdrawn or you request erasure, subject to legal exceptions</li>
+                    </ul>
+                </section>
+
+                <section id="data-security">
+                    <h2>6. Data Security</h2>
+                    <p>We implement the following measures to protect your data:</p>
+                    <ul>
+                        <li>Secure servers and firewalls</li>
+                        <li>Data encryption in transit and at rest</li>
+                        <li>Regular vulnerability assessments and platform audits</li>
+                        <li>Limited access controls to personal data based on role necessity</li>
+                    </ul>
+                    <p>Despite our best efforts, no system is completely secure. Users should take reasonable steps to protect their credentials.</p>
+                </section>
+
+                <section id="international-transfers">
+                    <h2>7. International Data Transfers</h2>
+                    <ul>
+                        <li>If personal data is transferred outside Nigeria, such transfers are conducted with adequate safeguards as required under the NDPA and NDPR</li>
+                        <li>This may include standard contractual clauses, data protection agreements, and secure hosting in compliant jurisdictions</li>
+                    </ul>
+                </section>
+
+                <section id="your-rights">
+                    <h2>8. Your Data Protection Rights</h2>
+                    <p>Under Nigerian data protection law, you have the following rights:</p>
+                    <ul>
+                        <li><strong>Right to Access</strong> – Request access to your personal data and receive a copy</li>
+                        <li><strong>Right to Rectification</strong> – Request correction of inaccurate or incomplete data</li>
+                        <li><strong>Right to Withdraw Consent</strong> – At any time, without affecting prior lawful processing</li>
+                        <li><strong>Right to Erasure</strong> – Request deletion of your data, subject to legal limitations</li>
+                        <li><strong>Right to Object</strong> – Object to processing based on legitimate interests or for direct marketing</li>
+                        <li><strong>Right to Data Portability</strong> – Request transfer of your data to another service provider</li>
+                    </ul>
+                    <p>Requests must be submitted through the contact information below. Verification of identity may be required.</p>
+                </section>
+
+                <section id="children-privacy">
+                    <h2>9. Children's Privacy</h2>
+                    <p>BingeBay is not directed to children under the age of 18. We do not knowingly collect or process data from minors. If we become aware of such collection, we will delete the data immediately.</p>
+                </section>
+
+                <section id="cookies">
+                    <h2>10. Cookies and Tracking Technologies</h2>
+                    <ul>
+                        <li>We use cookies and similar technologies to enhance your browsing experience, understand usage patterns, and deliver personalized content</li>
+                        <li>You can manage cookie preferences through your browser settings. For more information, please refer to our Cookie Policy</li>
+                    </ul>
+                </section>
+
+                <section id="policy-changes">
+                    <h2>11. Changes to This Privacy Policy</h2>
+                    <ul>
+                        <li>We may revise this Privacy Policy periodically. When changes are material, we will notify you through the platform or via email</li>
+                        <li>Continued use of BingeBay after changes are posted indicates your acceptance of those updates</li>
+                    </ul>
+                </section>
+
+                <section id="contact">
+                    <div class="contact-section">
+                        <h2>12. Contact Us</h2>
+                        <p>For any questions, concerns, or to exercise your rights under this Policy, contact:</p>
+                        <h3>VENIX PARTNERS LIMITED</h3>
+                        <p>10th Floor, Standard Chartered Building<br>
+                        142 Ahmadu Bello Way<br>
+                        Victoria Island, Lagos State, Nigeria</p>
+                        <p><strong>Email:</strong> support@venixpartners.com</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-to-top" id="scrollToTop">↑</button>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add active state to sidebar navigation
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        function toggleScrollToTop() {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        }
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Toggle navigation on mobile
+        const navToggle = document.getElementById('navToggle');
+        const navGrid = document.getElementById('navGrid');
+
+        if (navToggle && navGrid) {
+            navToggle.addEventListener('click', () => {
+                navGrid.classList.toggle('collapsed');
+                navToggle.classList.toggle('active');
+                
+                if (navGrid.classList.contains('collapsed')) {
+                    navToggle.textContent = 'Show Navigation Menu';
+                } else {
+                    navToggle.textContent = 'Hide Navigation Menu';
+                }
+            });
+
+            // Initialize collapsed state on mobile
+            function initMobileNav() {
+                if (window.innerWidth <= 768) {
+                    navGrid.classList.add('collapsed');
+                    navToggle.textContent = 'Show Navigation Menu';
+                } else {
+                    navGrid.classList.remove('collapsed');
+                    navToggle.classList.remove('active');
+                }
+            }
+
+            // Initialize on load and resize
+            initMobileNav();
+            window.addEventListener('resize', initMobileNav);
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            updateActiveNav();
+            toggleScrollToTop();
+        });
+
+        // Initial calls
+        updateActiveNav();
+        toggleScrollToTop();
+    </script>
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #bae6fd;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Remove animated background elements and animations */
+        .bg-animations, .cloud, .particle { display: none !important; }
+        @keyframes float {}
+        @keyframes sparkle {}
+
+        /* Navigation - Clean and standalone */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            height: var(--header-height);
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            height: 100px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
+            animation: logo-glow 3s ease-in-out infinite alternate;
+            transition: transform 0.3s ease;
+        }
+
+        @keyframes logo-glow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
+                transform: scale(1);
+            }
+            to {
+                filter: drop-shadow(0 0 25px rgba(125, 211, 252, 0.8));
+                transform: scale(1.02);
+            }
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-signup {
+            background: linear-gradient(45deg, #0ea5e9, #38bdf8, #7dd3fc);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 24px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(14, 165, 233, 0.6);
+            background: linear-gradient(45deg, #38bdf8, #7dd3fc, #bae6fd);
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            padding-top: calc(var(--header-height) + 40px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #bae6fd;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: #7dd3fc;
+            box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.2);
+        }
+
+        .search-bar::placeholder {
+            color: rgba(186, 230, 253, 0.7);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            fill: #7dd3fc;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Category Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            fill: #7dd3fc;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1);
+            fill: white;
+        }
+
+        .category-card h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .category-card p {
+            color: #bae6fd;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-section h2 {
+            color: white;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-arrow {
+            width: 20px;
+            height: 20px;
+            fill: #7dd3fc;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 2rem;
+            color: #bae6fd;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 2rem 1.5rem;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #0ea5e9 0%, #7dd3fc 100%);
+            color: white;
+            border: none;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+        }
+
+        /* Contact Support */
+        .support-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .support-section h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .support-section p {
+            color: #bae6fd;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            color: #7dd3fc;
+            margin: 2rem 0;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(125, 211, 252, 0.3);
+            border-top: 4px solid #7dd3fc;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 70px;
+            }
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .auth-buttons {
+                gap: 10px;
+            }
+
+            .btn-signup {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .container {
+                padding: 1rem;
+                padding-top: calc(var(--header-height) + 20px);
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .header {
+                margin-bottom: 2rem;
+                padding: 1rem 0;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .category-card {
+                padding: 1.5rem;
+            }
+
+            .category-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .category-card p {
+                font-size: 0.9rem;
+            }
+
+            .category-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .faq-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .faq-question {
+                padding: 1rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.5rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 0 1.5rem 1rem;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .action-btn {
+                padding: 1rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .support-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .support-section p {
+                font-size: 0.95rem;
+            }
+
+            .search-bar {
+                font-size: 0.95rem;
+                padding: 0.85rem 0.85rem 0.85rem 2.5rem;
+            }
+
+            .search-icon {
+                width: 18px;
+                height: 18px;
+                left: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .logo img {
+                height: 25px;
+            }
+
+            .container {
+                padding: 0.75rem;
+                padding-top: calc(var(--header-height) + 15px);
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            .category-card {
+                padding: 1.25rem;
+            }
+
+            .category-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .faq-question {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .glass-card {
+                padding: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/BL.svg" alt="Bingebay Logo">
+            </a>
+        </div>
+
+        <div class="auth-buttons">
+            <a href="index.html" class="btn-signup">Home</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Help Center</h1>
+            <p>Find answers to your questions and get the support you need. We're here to help you make the most of your streaming experience.</p>
+        </div>
+
+        <!-- Categories Grid -->
+        <div class="categories-grid">
+            <div class="category-card" onclick="showCategory('getting-started')">
+                <svg class="category-icon" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                <h3>Getting Started</h3>
+                <p>New to our platform? Learn the basics of creating your account and navigating our streaming service.</p>
+            </div>
+
+            <div class="category-card" onclick="showCategory('account-billing')">
+                <svg class="category-icon" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                <h3>Account & Billing</h3>
+                <p>Manage your subscription, payment methods, and account settings with our comprehensive guides.</p>
+            </div>
+
+            <div class="category-card" onclick="showCategory('streaming-playback')">
+                <svg class="category-icon" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+                <h3>Streaming & Playback</h3>
+                <p>Troubleshoot video quality issues, playback problems, and optimize your viewing experience.</p>
+            </div>
+
+            <div class="category-card" onclick="showCategory('devices-apps')">
+                <svg class="category-icon" viewBox="0 0 24 24">
+                    <path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z"/>
+                </svg>
+                <h3>Devices & Apps</h3>
+                <p>Learn how to install and use our app on different devices, from smart TVs to mobile phones.</p>
+            </div>
+
+            <div class="category-card" onclick="showCategory('content-features')">
+                <svg class="category-icon" viewBox="0 0 24 24">
+                    <path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>
+                </svg>
+                <h3>Content & Features</h3>
+                <p>Discover how to find your favorite shows, create watchlists, and use our advanced features.</p>
+            </div>
+
+            <div class="category-card" onclick="showCategory('troubleshooting')">
+                <svg class="category-icon" viewBox="0 0 24 24">
+                    <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+                </svg>
+                <h3>Troubleshooting</h3>
+                <p>Fix common technical issues and errors with our step-by-step troubleshooting guides.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    How do I cancel my subscription?
+                    <svg class="faq-arrow" viewBox="0 0 24 24">
+                        <path d="M7.41 8.84L12 13.42l4.59-4.58L18 10.25l-6 6-6-6z"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    You can cancel your subscription anytime by going to Account Settings > Subscription > Cancel Subscription. Your access will continue until the end of your current billing period.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    Why is my video buffering or loading slowly?
+                    <svg class="faq-arrow" viewBox="0 0 24 24">
+                        <path d="M7.41 8.84L12 13.42l4.59-4.58L18 10.25l-6 6-6-6z"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    Buffering issues are usually related to internet speed. Try reducing video quality, closing other apps, restarting your router, or checking if other devices are using bandwidth.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    What should I do if I forgot my password?
+                    <svg class="faq-arrow" viewBox="0 0 24 24">
+                        <path d="M7.41 8.84L12 13.42l4.59-4.58L18 10.25l-6 6-6-6z"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    Click "Forgot Password" on the login page, enter your email address, and we'll send you a reset link. Check your spam folder if you don't see the email within a few minutes.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Support Section -->
+        <div class="glass-card support-section">
+            <h2>Still Need Help?</h2>
+            <p>Our support team is available 24/7 to assist you with any questions or issues you may have.</p>
+            <div class="quick-actions">
+                <a href="contact.html" class="action-btn">Send us a Message</a>
+                <a href="tel:+2348124457343" class="action-btn">Call Support</a>
+            </div>
+        </div>
+
+        <!-- Loading Animation -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                const query = e.target.value.toLowerCase();
+                if (query.length > 2) {
+                    simulateSearch(query);
+                }
+            });
+        }
+
+        function simulateSearch(query) {
+            const loading = document.getElementById('loading');
+            loading.style.display = 'block';
+            
+            setTimeout(() => {
+                loading.style.display = 'none';
+                console.log('Searching for:', query);
+            }, 1000);
+        }
+
+        // FAQ toggle functionality
+        function toggleFAQ(button) {
+            const faqItem = button.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Category functionality
+        function showCategory(category) {
+            console.log('Showing category:', category);
+            // Add your category display logic here
+        }
+
+        // Example stub functions for quick actions
+        function checkSystemStatus() {
+            alert('System Status: All systems are operational.');
+        }
+
+        function reportIssue() {
+            window.location.href = "report-issue.html";
+        }
+    </script>
+</body>
+</html>

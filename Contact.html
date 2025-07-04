@@ -150,6 +150,11 @@
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
+            .footer-column .logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
         }
 
         footer {
@@ -405,6 +410,40 @@
             
             .glass-card {
                 padding: 1.5rem;
+            }
+            .footer-container {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+                gap: 20px !important;
+            }
+            .footer-column {
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+            .footer-logo, .footer-heading, .footer-links, .footer-description {
+                text-align: center !important;
+                width: 100% !important;
+            }
+            .social-links {
+                justify-content: center !important;
+                display: flex !important;
+                width: 100% !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .footer-container {
+                padding: 0 !important;
+                gap: 10px !important;
+            }
+            .footer-column {
+                padding: 0 !important;
             }
         }
     </style>

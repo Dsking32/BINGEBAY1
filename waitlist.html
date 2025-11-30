@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join the Waitlist - Bingebay</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon1.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #0a0a0a 0%,
+          #1a1a2e 50%,
+          #16213e 100%
+        );
+        color: white;
+        overflow-x: hidden;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .logo img {
+        height: 60px;
+        width: auto;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        flex: 1;
+        justify-content: center;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #00bfff;
+      }
+
+      .auth-buttons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .btn-signup {
+        background: linear-gradient(45deg, #ff1493, #00bfff);
+        color: white;
+        border: none;
+      }
+
+      .btn-signup:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+      }
+
+      /* Main Content */
+      .waitlist-page {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 120px 20px 60px 20px;
+        background: radial-gradient(
+            circle at 20% 80%,
+            rgba(255, 20, 147, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(0, 191, 255, 0.3) 0%,
+            transparent 50%
+          ),
+          linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      }
+
+      .waiting-list-container {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 25px rgba(0, 191, 255, 0.15);
+        text-align: center;
+      }
+
+      .waiting-list-title {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        background: linear-gradient(45deg, #ff1493, #00bfff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .waiting-list-subtitle {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1rem;
+        margin-bottom: 30px;
+      }
+
+      .waiting-list-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        outline: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .form-group input:focus {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: #00bfff;
+        box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+      }
+
+      .input-error {
+        border-color: #ff4c4c !important;
+        background: rgba(255, 0, 0, 0.05);
+      }
+
+      .waiting-list-form .btn-primary {
+        width: 100%;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        padding: 15px;
+        cursor: pointer;
+        background: linear-gradient(45deg, #ff1493, #00bfff);
+        color: #fff;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .waiting-list-form .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+      }
+
+      .form-message {
+        margin-top: 20px;
+        font-size: 1rem;
+        font-weight: 500;
+        min-height: 24px;
+      }
+
+      /* Footer */
+      footer {
+        background: rgba(10, 10, 10, 0.95);
+        padding: 40px 50px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .footer-column h3 {
+        margin-bottom: 15px;
+        color: #00bfff;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: #00bfff;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+      }
+
+      .social-link {
+        display: inline-block;
+        transition: transform 0.3s;
+      }
+
+      .social-link:hover {
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 15px 20px;
+        }
+
+        .logo img {
+          height: 50px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .waiting-list-container {
+          padding: 30px 20px;
+        }
+
+        .waiting-list-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+    <meta
+      name="description"
+      content="Join the Bingebay waitlist to be the first to know when we launch. Get exclusive updates and early access to Africa's best streaming service."
+    />
+    <meta
+      name="keywords"
+      content="Bingebay waitlist, streaming launch, Africa streaming, early access, exclusive updates"
+    />
+
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img
+            src="images/BL.svg"
+            alt="Bingebay Logo"
+            style="height: 100px; width: auto; display: block"
+          />
+        </a>
+      </div>
+      <ul class="nav-links"></ul>
+      <div class="auth-buttons">
+        <a href="Get.html" class="btn btn-signup">Become A Provider</a>
+      </div>
+    </nav>
+
+    <main class="waitlist-page">
+      <div class="waiting-list-container">
+        <h1 class="waiting-list-title">Join the Waiting List</h1>
+        <p class="waiting-list-subtitle">
+          Be the first to know when we go live! Sign up below to get exclusive
+          updates.
+        </p>
+
+        <form class="waiting-list-form" id="waitingListForm" novalidate>
+          <div class="form-group">
+            <input
+              type="text"
+              id="wl-name"
+              name="name"
+              placeholder="Full Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              id="wl-email"
+              name="email"
+              placeholder="Email Address"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="tel"
+              id="wl-phone"
+              name="phone"
+              placeholder="Phone Number"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              id="wl-age"
+              name="age"
+              placeholder="Age"
+              min="10"
+              max="100"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-primary" id="wl-submit">
+            Join Now
+          </button>
+        </form>
+
+        <p id="wl-message" class="form-message" role="alert"></p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-column">
+          <div class="logo">
+            <img
+              src="images/BL.svg"
+              alt="Bingebay Logo"
+              style="height: 150px; width: auto; display: block"
+            />
+          </div>
+
+          <div class="social-links">
+            <a
+              href="https://www.instagram.com/bingebay_?utm_source=qr&igsh=dm9kbmhwNHUyaGV6"
+              class="social-link"
+              target="_blank"
+              aria-label="Instagram"
+            >
+              <img
+                src="images/ig1.png"
+                alt="Instagram"
+                style="height: 24px; width: 24px"
+              />
+            </a>
+            <a
+              href="https://x.com/bingebay_?t=zZVkonq2YgeftG6MiwIM_Q&s=09"
+              class="social-link"
+              target="_blank"
+              aria-label="Twitter"
+            >
+              <img
+                src="images/x.PNG"
+                alt="Twitter"
+                style="height: 24px; width: 24px"
+              />
+            </a>
+            <a
+              href="https://www.youtube.com/@BingeBayTV"
+              class="social-link"
+              target="_blank"
+              aria-label="Youtube"
+            >
+              <img
+                src="images/yt.jpg"
+                alt="Youtube"
+                style="height: 24px; width: 24px"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-heading">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Get.html">Become a provider</a></li>
+            <li><a href="waitlist.html">Join Waitlist</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-heading">Legal</h3>
+          <ul class="footer-links">
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-heading">Support</h3>
+          <ul class="footer-links">
+            <li><a href="Help.html">Help Center</a></li>
+            <li><a href="Contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Bingebay. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // --- SUPABASE CONFIGURATION ---
+      const SUPABASE_URL = "https://gbeklsuadzjjvwbexuby.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdiZWtsc3VhZHpqanZ3YmV4dWJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMzNTk5MTksImV4cCI6MjA3ODkzNTkxOX0.d1-1JQVo4-UqCHv1wgrRgVHG8gYHrFA69NnDliBYUpo";
+
+      let supabaseClient;
+
+      // Initialize Supabase client
+      if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+
+      // --- WAITING LIST FORM HANDLER (Supabase Integration) ---
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("waitingListForm");
+        const messageBox = document.getElementById("wl-message");
+        const submitBtn = document.getElementById("wl-submit");
+
+        if (!form) return;
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          messageBox.textContent = "";
+          const inputs = form.querySelectorAll("input[required]");
+          let valid = true;
+
+          // Clear previous errors
+          inputs.forEach((input) => input.classList.remove("input-error"));
+
+          // Validation patterns
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          const phonePattern = /^[0-9+\s-]{6,}$/;
+
+          inputs.forEach((input) => {
+            const val = input.value.trim();
+
+            if (!val) {
+              valid = false;
+              input.classList.add("input-error");
+            } else if (input.id === "wl-email" && !emailPattern.test(val)) {
+              valid = false;
+              input.classList.add("input-error");
+            } else if (input.id === "wl-phone" && !phonePattern.test(val)) {
+              valid = false;
+              input.classList.add("input-error");
+            } else if (input.id === "wl-age") {
+              const age = parseInt(val, 10);
+              if (isNaN(age) || age < 10 || age > 100) {
+                valid = false;
+                input.classList.add("input-error");
+              }
+            }
+          });
+
+          if (!valid) {
+            messageBox.textContent =
+              "⚠️ Please fill all fields correctly before submitting.";
+            messageBox.style.color = "#ff4c4c";
+            return;
+          }
+
+          // Check if Supabase is configured
+          if (!supabaseClient) {
+            messageBox.textContent = "⚠️ Database not configured.";
+            messageBox.style.color = "#ffcc00";
+            return;
+          }
+
+          // Gather data for Supabase
+          const formData = {
+            name: document.getElementById("wl-name").value.trim(),
+            email: document.getElementById("wl-email").value.trim(),
+            phone: document.getElementById("wl-phone").value.trim(),
+            age: parseInt(document.getElementById("wl-age").value.trim(), 10),
+          };
+
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = "0.7";
+          messageBox.textContent = "Submitting...";
+          messageBox.style.color = "#00bfff";
+
+          try {
+            // Insert into Supabase
+            const { data, error } = await supabaseClient
+              .from("waitlist")
+              .insert([formData])
+              .select();
+
+            if (error) {
+              if (error.code === "23505") {
+                throw new Error(
+                  "This email is already registered in the waitlist."
+                );
+              }
+              throw error;
+            }
+
+            messageBox.textContent =
+              "🎉 Thank you! You're on the waiting list.";
+            messageBox.style.color = "#00ff88";
+            form.reset();
+          } catch (err) {
+            console.error("Waitlist error:", err);
+            messageBox.textContent =
+              err.message ||
+              "❌ Could not submit form. Please try again later.";
+            messageBox.style.color = "#ff4c4c";
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
